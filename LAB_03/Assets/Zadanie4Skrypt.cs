@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class Zadanie4Skrypt : MonoBehaviour
 {
-    public Collider collider;
-    public bool dotknietoPrzeszkody = false;
-
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision col)
     {
-        //if (collider.gameObject.tag == "Przeszkoda")
-        //    dotknietoPrzeszkody = true;
-        //else
-        //    dotknietoPrzeszkody = false;
-        dotknietoPrzeszkody = true;
+        if (col.gameObject.tag == "Przeszkoda")
+            Debug.Log("Dotknieto przeszkody");
     }
 
-    //void OnCollisionExit(Collision collision)
-    //{
-    //    dotknietoPrzeszkody = false;
-    //}
 }

@@ -60,6 +60,7 @@
      <Compile Include="Assets\Zadanie2Skrypt.cs" />
      <Compile Include="Assets\Zadanie3Skrypt.cs" />
      <Compile Include="Assets\Zadanie4Skrypt.cs" />
+     <Compile Include="Assets\Zadanie5Skrypt.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

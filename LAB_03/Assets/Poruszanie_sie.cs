@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Poruszanie_sie : MonoBehaviour
 {
-    public CharacterController characterController;
+    public Transform trans;
 
     public float speed = 12f;
     // Start is called before the first frame update
@@ -21,6 +21,6 @@ public class Poruszanie_sie : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        characterController.Move(move * speed * Time.deltaTime);
+        trans.Translate(move * speed * Time.deltaTime);
     }
 }

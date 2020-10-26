@@ -24,25 +24,32 @@ public class Zadanie3Skrypt : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (transform.position == leftUp)
+        //if (transform.position == leftUp)
+        //{
+        //    transform.localRotation = Quaternion.Euler(90, 0f, 0f);
+        //    moveX = speed * Time.deltaTime;
+        //    moveZ = 0;
+        //}
+        //if (transform.position == rightUp)
+        //{
+        //    transform.localRotation = Quaternion.Euler(90, 0f, 0f);
+        //    moveX = 0;
+        //    moveZ = speed * Time.deltaTime;
+        //}
+        //if (transform.position == rightDown)
+        //{
+        //    moveX = -speed * Time.deltaTime;
+        //    moveZ = 0;
+        //}
+        //if (transform.position == leftDown)
+        //{
+        //    moveX = 0;
+        //    moveZ = -speed * Time.deltaTime;
+        //}
+
+        if (transform.position == leftUp || transform.position == rightUp || transform.position == leftDown || transform.position == rightDown)
         {
-            moveX = speed * Time.deltaTime;
-            moveZ = 0;
-        }
-        if (transform.position == rightUp)
-        {
-            moveX = 0;
-            moveZ = speed * Time.deltaTime;
-        }
-        if (transform.position == rightDown)
-        {
-            moveX = -speed * Time.deltaTime;
-            moveZ = 0;
-        }
-        if (transform.position == leftDown)
-        {
-            moveX = 0;
-            moveZ = -speed * Time.deltaTime;
+            transform.Rotate(0f, 270f, 0f, Space.Self);
         }
 
         transform.Translate(moveX, 0, moveZ);
