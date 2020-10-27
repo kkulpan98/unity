@@ -4,44 +4,73 @@ using UnityEngine;
 
 public class Zadanie5Skrypt : MonoBehaviour
 {
-    class WylosowaneWartosci
-    {
-        List<Pair<Pair<float, float>, Pair<float, float>>> wylosowaneWartosci = new List<Pair<Pair<float, float>, Pair<float, float>>>();
-
-        public bool czyTakaWartoscMozeByc()
-        {
-            foreach (var item in wylosowaneWartosci)
-            {
-
-            }
-
-            return true;
-        }
-    }
-
-    class Pair<K,V>
-    {
-        public K key;
-        public V value;
-    }
-
-    public GameObject go;
-    // Start is called before the first frame update
+    private float maxX = 10f;
+    private float minX = 0f;
+    private float maxZ = 10f;
+    private float minZ = 0f;
+    private int createdObjects = 0;
+    public Bounds[] bounds;
+    public int amountToSpawn = 10;
+    public GameObject Target;
+    private GameObject tmpObject;
+    // Use this for initialization
     void Start()
     {
-        HashSet<Pair<Pair<float, float>, Pair<float, float>>> wylosowaneWartosci = new HashSet<Pair<Pair<float, float>, Pair<float, float>>>();
-        int y = 1;
-        int x;
-        int z;
+        bounds = new Bounds[amountToSpawn];
+        StartCoroutine(spawn());
+    }
 
-        for (int i = 0; i < 10; i++)
+    public IEnumerator spawn()
+    {
+        while (createdObjects < amountToSpawn)
         {
-            while()
 
-            x = Random.Range(-5, 5);
-            z = Random.Range(-5, 5);
+            GameObject targ = Target;
+            Bounds tmpBounds;
 
+            targ.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+
+            tmpObject = Instantiate(targ);
+            //tmpObject.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+           //tmpBounds = new Bounds(targ.transform.BroadcastMessag)
+
+            if (hasCollisions(tmpObject))
+            {
+                Debug.Log(hasCollisions(tmpObject) + "a");
+                tmpObject.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+                Debug.Log(new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ)));
+            }
+            if (hasCollisions(tmpObject))
+            {
+                Debug.Log(hasCollisions(tmpObject) + "b");
+                tmpObject.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+                Debug.Log(new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ)));
+            }
+            if (hasCollisions(tmpObject))
+            {
+                Debug.Log(hasCollisions(tmpObject) + "c");
+                tmpObject.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+                Debug.Log(new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ)));
+            }
+
+            //Debug.Log(hasCollisions(tmpObject));
+            bounds[createdObjects] = new Bounds(tmpObject.GetComponent<BoxCollider>().bounds.center, tmpObject.GetComponent<BoxCollider>().bounds.size);
+            createdObjects++;
+        }
+
+        yield return null;
+    }
+
+    bool hasCollisions(GameObject target)
+    {
+        for (int j = 0; j < createdObjects; j++)
+        {
+            if (target.GetComponent<BoxCollider>().bounds.Intersects(bounds[j]))
+            {
+                return true;
+            }
 
         }
+        return false;
     }
 }
