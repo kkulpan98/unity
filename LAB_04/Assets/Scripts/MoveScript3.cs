@@ -57,8 +57,6 @@ public class MoveScript3 : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit col)
     {
         if (col.gameObject.tag == "JumpIntensifier")
-            jumpHeight = 3.0f;
-        else
-            jumpHeight = 1.0f;
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue * 3);
     }
 }

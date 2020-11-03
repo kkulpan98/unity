@@ -12,6 +12,7 @@ public class Zadanie1 : MonoBehaviour
     int objectCounter = 0;
     // obiekt do generowania
     public GameObject block;
+    public GameObject plane;
     public Material[] materialy = new Material[5];
 
     void Start()

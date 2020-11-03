@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Zadanie5Skrypt : MonoBehaviour
@@ -8,69 +9,23 @@ public class Zadanie5Skrypt : MonoBehaviour
     private float minX = 0f;
     private float maxZ = 10f;
     private float minZ = 0f;
-    private int createdObjects = 0;
     public Bounds[] bounds;
     public int amountToSpawn = 10;
-    public GameObject Target;
-    private GameObject tmpObject;
+    public GameObject target;
     // Use this for initialization
     void Start()
     {
-        bounds = new Bounds[amountToSpawn];
-        StartCoroutine(spawn());
+        generateObjects();
     }
 
-    public IEnumerator spawn()
+    private void generateObjects()
     {
-        while (createdObjects < amountToSpawn)
+        List<int> pozycje_x = new List<int>(Enumerable.Range(0, 10).OrderBy(x => Random.value));
+        List<int> pozycje_z = new List<int>(Enumerable.Range(0, 10).OrderBy(z => Random.value));
+
+        for (int i = 0; i < amountToSpawn; i++)
         {
-
-            GameObject targ = Target;
-            Bounds tmpBounds;
-
-            targ.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
-
-            tmpObject = Instantiate(targ);
-            //tmpObject.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
-           //tmpBounds = new Bounds(targ.transform.BroadcastMessag)
-
-            if (hasCollisions(tmpObject))
-            {
-                Debug.Log(hasCollisions(tmpObject) + "a");
-                tmpObject.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
-                Debug.Log(new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ)));
-            }
-            if (hasCollisions(tmpObject))
-            {
-                Debug.Log(hasCollisions(tmpObject) + "b");
-                tmpObject.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
-                Debug.Log(new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ)));
-            }
-            if (hasCollisions(tmpObject))
-            {
-                Debug.Log(hasCollisions(tmpObject) + "c");
-                tmpObject.transform.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
-                Debug.Log(new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ)));
-            }
-
-            //Debug.Log(hasCollisions(tmpObject));
-            bounds[createdObjects] = new Bounds(tmpObject.GetComponent<BoxCollider>().bounds.center, tmpObject.GetComponent<BoxCollider>().bounds.size);
-            createdObjects++;
+            Instantiate(target, new Vector3(pozycje_x[i], 0, pozycje_z[i]), Quaternion.identity);
         }
-
-        yield return null;
-    }
-
-    bool hasCollisions(GameObject target)
-    {
-        for (int j = 0; j < createdObjects; j++)
-        {
-            if (target.GetComponent<BoxCollider>().bounds.Intersects(bounds[j]))
-            {
-                return true;
-            }
-
-        }
-        return false;
     }
 }

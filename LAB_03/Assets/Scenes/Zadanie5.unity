@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds: []
   amountToSpawn: 10
-  Target: {fileID: 1646086458986043996, guid: 257f936ee6f7a8544812cd8e47372b5e, type: 3}
+  target: {fileID: 1646086458986043996, guid: 257f936ee6f7a8544812cd8e47372b5e, type: 3}
 --- !u!1 &1955584207
 GameObject:
   m_ObjectHideFlags: 0
